@@ -1,0 +1,61 @@
+<!doctype html>
+<head>
+    <title>OnePass</title> 
+    <meta name="viewport" id="vp" content="initial-scale=1.0,user-scalable=no,maximum-scale=1,width=device-width" />
+    <meta charset="utf-8" />
+
+    <link rel="stylesheet" href="https://api.mazemap.com/js/v2.0.19/mazemap.min.css">
+    <script type='text/javascript' src='https://api.mazemap.com/js/v2.0.19/mazemap.min.js'></script>
+
+    <style>
+        body { margin:0px; padding:0px; width: 100vw; height:100vh; font-family: "Helvetica Neue",Helvetica,Arial,sans-serif; font-size: 14px; line-height: 1.42857143; }
+        hr { border: 0; height: 1px; background-color: rgb(216, 216, 216); }
+
+
+        #events{
+            position: absolute;
+            box-sizing: border-box;
+            padding: 10px;
+            top: 10px;
+            left: 10px;
+            width: auto;
+            height: auto;
+            width: calc( 50% - 20px );
+            display: flex;
+            background: rgb(255, 255, 255);
+            border-radius: 4px;
+            box-shadow: 0px 0px 0px 1px rgba(93, 93, 93, 0.31)
+        }
+    </style>
+</head>
+
+<body>
+    <div id='map' class="mazemap" style="width: 80%; height: 80%;"></div>
+
+
+<script>
+    var myMap = new Mazemap.Map({'container': 'map',
+        'center': {
+            'lng' : 29.385300,
+            'lat' : 82.203728
+        },
+        'scrollZoom' : true,
+        'doubleClickZoom' : true
+    });
+
+
+
+    myMap.on('click', function(e){
+    myMap.flyTo({center:e.lngLat, zoom: 5});
+
+
+
+
+});
+
+   // Add zoom and rotation controls to the map.
+   map.addControl(new Mazemap.mapboxgl.NavigationControl());
+
+</script>
+
+</body>
