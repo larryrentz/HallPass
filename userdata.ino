@@ -1,5 +1,3 @@
-
-
 #include <ArduinoBLE.h>
 
  // BLE Battery Service
@@ -8,12 +6,9 @@ BLEService userData("181C");
 // BLE Battery Level Characteristic
 BLECharacteristic nameCharacteristic("2A8A", BLERead | BLENotify, "James"); //name
 BLECharacteristic lastnameCharacteristic("2A90", BLERead | BLENotify, "Doe"); //lastname
-BLECharacteristic positionCharacteristic("2A2F", BLERead | BLENotify, "Cafeteria"); //position
-BLECharacteristic useridCharacteristic("2A9A", BLERead | BLENotify, "9th Grade - ID: 00123"); //user id
+BLECharacteristic locationnameCharacteristic("2AB5", BLERead | BLENotify, "Cafeteria"); //position
+BLECharacteristic useridCharacteristic("2A3D", BLERead | BLENotify, "9th Grade - ID: 00123"); //user id
 
-
-int oldBatteryLevel = 0;  // last battery level reading from analog input
-long previousMillis = 0;  // last time the battery level was checked, in ms
 
 void setup() {
   Serial.begin(9600);    // initialize serial communication
@@ -33,11 +28,11 @@ void setup() {
      The name can be changed but maybe be truncated based on space left in advertisement packet
   */
   
-  BLE.setLocalName("BatteryMonitor");
+  BLE.setLocalName("Student Info");
   BLE.setAdvertisedService(userData); // add the service UUID
   userData.addCharacteristic(nameCharacteristic); // add the battery level characteristic
   userData.addCharacteristic(lastnameCharacteristic); // add the battery level characteristic
-  userData.addCharacteristic(positionCharacteristic); // add the battery level characteristic
+  userData.addCharacteristic(locationnameCharacteristic); // add the battery level characteristic
   userData.addCharacteristic(useridCharacteristic); // add the battery level characteristic
  
   BLE.addService(userData); // Add the battery service
@@ -47,8 +42,8 @@ void setup() {
  userData.addCharacteristic(lastnameCharacteristic); // add the battery level characteristic
   lastnameCharacteristic.writeValue("Doe"); // set initial value for this characteristic
   
-  userData.addCharacteristic(positionCharacteristic); // add the battery level characteristic
- positionCharacteristic.writeValue("Cafeteria"); // set initial value for this characteristic
+  userData.addCharacteristic(locationnameCharacteristic); // add the battery level characteristic
+  locationnameCharacteristic.writeValue("Cafeteria"); // set initial value for this characteristic
   
   userData.addCharacteristic(useridCharacteristic); // add the battery level characteristic
   useridCharacteristic.writeValue("9th Grade - ID: 00123"); // set initial value for this characteristic
@@ -82,5 +77,3 @@ void loop() {
     Serial.println(central.address());
   }
 }
-
-
